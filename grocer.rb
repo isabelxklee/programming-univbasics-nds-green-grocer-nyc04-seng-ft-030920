@@ -1,12 +1,12 @@
 def find_item_by_name_in_collection(name, collection)
-  index = 0
-  while index < collection.length do 
-    if collection[index][:item] == name 
-      return collection[index]
+    index = 0
+    while index < collection.length do 
+      if collection[index][:item] == name 
+        return collection[index]
+      end 
+      index += 1
     end 
-    index += 1
-  end 
-end
+  end
 
 def consolidate_cart(cart)
   new_cart = []
@@ -47,7 +47,7 @@ def apply_coupons(cart, coupons)
           else
             cart_with_coupon = {
               :item => coupon_name,
-              :price => coupons[counter][:cost] / coupons[counter][:num],
+              :price => coupons[counter][:cost] / coupons[:counter][:num],
               :count => coupons[counter][:num],
               :clearance => cart_item[:clearance]
             }
@@ -74,7 +74,7 @@ end
 
 def checkout(cart, coupon)
   consolidated_cart = consolidate_cart(cart)
-  couponed_cart = apply_coupons(consolidated_cart, coupons)
+  couponed_cart = apply_coupons(consolidated_cart, coupon)
   final_cart = apply_clearance(couponed_cart)
 
   total = 0 
